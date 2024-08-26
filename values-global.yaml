@@ -11,11 +11,11 @@ global:
     hostname: github.com
     account: validatedpatterns-demos
     username: validatedpatterns-demos
-    email: SOMEWHERE@EXAMPLE.COM
+    email: michele@acksyn.org
     dev_revision: main
 
   imageregistry:
-    account: hybridcloudpatterns
+    account: rhn_support_mbaldess
     hostname: quay.io
     type: quay
 
