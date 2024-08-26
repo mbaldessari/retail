@@ -4,10 +4,11 @@ build_ns=quarkuscoffeeshop-cicd
 pipelines=('build-and-push-quarkuscoffeeshop-barista' 'build-and-push-quarkuscoffeeshop-counter' 'build-and-push-quarkuscoffeeshop-customerloyalty' 'build-and-push-quarkuscoffeeshop-customermocker' 'build-and-push-quarkuscoffeeshop-inventory' 'build-and-push-quarkuscoffeeshop-kitchen' 'build-and-push-quarkuscoffeeshop-web')
 
 echo "Checking for resources to be available to start pipelines"
+DELAY=5
 retry=0
 check=1
 while [ "$check" == "1" ]; do
-    sleep 2;
+    sleep ${DELAY}
 
     for p in ${pipelines[@]}; do
         oc get -n $build_ns pipeline $p 1>/dev/null 2>/dev/null
