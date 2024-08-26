@@ -3,8 +3,18 @@
 build_ns=quarkuscoffeeshop-cicd
 pipelines=('build-and-push-quarkuscoffeeshop-barista' 'build-and-push-quarkuscoffeeshop-counter' 'build-and-push-quarkuscoffeeshop-customerloyalty' 'build-and-push-quarkuscoffeeshop-customermocker' 'build-and-push-quarkuscoffeeshop-inventory' 'build-and-push-quarkuscoffeeshop-kitchen' 'build-and-push-quarkuscoffeeshop-web')
 
-echo "Checking for resources to be available to start pipelines"
 DELAY=5
+echo "Checking for ClusterTasks to be available"
+while true; do
+    OUT=$(oc get clustertasks 2>/dev/null | wc -l)
+    if [ ${OUT} -eq 0 ]; then
+        sleep ${DELAY}
+        continue
+    fi
+    break
+done
+
+echo "Checking for resources to be available to start pipelines"
 retry=0
 check=1
 while [ "$check" == "1" ]; do
